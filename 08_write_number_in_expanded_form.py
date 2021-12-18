@@ -32,4 +32,4 @@ def expanded_form(num):
     return output
 
 
-print(expanded_form(420650))
+print(expanded_form(int(input("ingresa un número entero:"))))
