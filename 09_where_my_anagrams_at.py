@@ -32,24 +32,37 @@ anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
 #     for i in words:
 #         if len(i) == len(word):
 #             for j in i:
-#                 if i.count(j) == letters_counter[j] and i not in words_ok:
-#                     words_ok.append(i)
+#                 try:
+#                     if i.count(j) == letters_counter[j] and sorted(i) == \
+#                             sorted(word) and i not in words_ok:
+#                         words_ok.append(i)
+#                 except KeyError:
+#                     pass
 #     print(f"letters_counter: {letters_counter}\n")
 #     return words_ok
 #
 #
-# print(anagrams("baraka", ["rakbaa", "akbaras",
+# print(anagrams("baraka", ["rakbea", "akbaras",
 #       "akarab", "krasbar", "brakaa", "bkaara"]))
+
+# -------------------------------------------------------------------
 
 
 def anagrams(word, words):
     letters_count = {letter: word.count(letter) for letter in word}
     words_ok = []
-    [list(words_ok.append(i) for j in i if i.count(
-        j) == letters_count[j] and i not in words_ok) for i in words
+    [list(words_ok.append(i) for j in i if j in letters_count.keys()
+          and i.count(j) == letters_count[j] and sorted(i) == sorted(word)
+          and i not in words_ok) for i in words
      if len(i) == len(word)]
     return words_ok
 
 
-print(anagrams("baraka", ["rakbaa", "akbaras",
-                          "akarab", "krasbar", "brakaa", "bkaara"]))
+print(anagrams("bersa", ["besar", "asrob",
+                         "akarab", "rebas", "brakaa", "sareb"]))
+
+# print(anagrams("sado", ["odas", "daso",
+#                         "akarab", "odsa", "brakaa", "sareb"]))
+
+# print(anagrams("baraka", ["rakbea", "akbaras",
+#       "akarab", "krasbar", "brakaa", "bkaara"]))
