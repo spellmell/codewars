@@ -52,8 +52,7 @@ def anagrams(word, words):
     letters_count = {letter: word.count(letter) for letter in word}
     words_ok = []
     [list(words_ok.append(i) for j in i if j in letters_count.keys()
-          and i.count(j) == letters_count[j] and sorted(i) == sorted(word)
-          and i not in words_ok) for i in words
+          and sorted(i) == sorted(word) and i not in words_ok) for i in words
      if len(i) == len(word)]
     return words_ok
 
