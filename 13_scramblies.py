@@ -183,7 +183,7 @@ scramble('katas', 'steak') ==> False
 # print(scramble("theddarkesidevofothelmoon", "love"))
 
 def scramble(s1, s2): return all([True if i in s1 and s2.count(
-        i) <= s1.count(i) else False for i in s2])
+        i) <= s1.count(i) else False for i in set(s2)])
 
 
 print(scramble("theddarkesidevofothelmoon", "love"))
