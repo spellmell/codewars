@@ -31,7 +31,6 @@ pickPeaks([1, 2, 2, 2, 1]) returns {pos: [1], peaks: [2]}
 Have fun!
 """
 
-# import sys
 from random import randint as r
 
 min = 500000000
@@ -39,11 +38,19 @@ max = 1000000000
 
 
 def pick_peaks(arr):
-    arr, index, value = list(map(int, arr)), [], []
-    [[index.append(i), value.append(v)]
-     for i, v in enumerate(arr) if 0 < i < len(arr)-1
-     and ((v > arr[i-1] and v != arr[i-1] and v > arr[i+1])
-     or (v == arr[i-1] and v > arr[i+1]))]
+    arr, index, value, psi = list(map(int, arr)), [], [], 0
+
+    for i, v in enumerate(arr):
+        if 0 < i < len(arr)-1:
+            p, n = arr[i-1], arr[i+1]
+            if p < v > n:
+                [index.append(i), value.append(v)]
+            if p != v == n:  # starting plateau
+                psi = i  # initial index of plateau
+                # print(f"psi:{psi}")
+            if p == v > n and v > arr[psi-1] and arr[0] != arr[1]:
+                # print(f"psi:{psi}")
+                [index.append(psi), value.append(v)]
 
     print(f"{arr}\npos:{index}\npeaks:{value}")
 
@@ -51,16 +58,4 @@ def pick_peaks(arr):
 
 
 pick_peaks(list(str(r(min, max))))
-# pick_peaks([1, 2, 3, 6, 4, 1, 2, 3, 2, 1])
-# pick_peaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 3])
-# pick_peaks([3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 2, 2, 1])
-# pick_peaks([2, 1, 3, 1, 2, 2, 2, 2, 1])
-# pick_peaks([2, 1, 3, 1, 2, 2, 2, 2])  # /// -0.1666
-# pick_peaks([2, 1, 3, 2, 2, 2, 2, 5, 6])  # /// +0.1666
-# pick_peaks([2, 1, 3, 2, 2, 2, 2, 1])
-# pick_peaks([1, 2, 5, 4, 3, 2, 3, 6, 4, 1, 2, 3,
-#            3, 4, 5, 3, 2, 1, 2, 3, 5, 5, 4, 3])
-# pick_peaks([])
-# pick_peaks([1, 1, 1, 1])
-
-# print(sys.version)
+# pick_peaks([8, 8, 5, 3, 7, 1, 3, 5, 7, 8, 2, 1, 3])
