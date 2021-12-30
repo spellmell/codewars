@@ -22,29 +22,6 @@ solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8,
 """
 
 
-# def solution(args):
-#     sl, el = [], []
-#     [sl.append(f"{args[i]}.") if len(sl) == 0 or args[i] == (args[i-1]+1)
-#      else [sl.append("_"), sl.append(f"{args[i]}.")] for i in range(len(args))]
-#
-#     sl = ''.join(map(str, sl)).split("_")
-#
-#     for j in sl:
-#         if j.count(".") < 3:
-#             tl = j.split(".")
-#             for k in tl:
-#                 el.append(k)
-#         else:
-#             tl = j.split(".")
-#             el.append(f"{tl[0]}-{tl[-2]}")
-#
-#     [el.pop(el.index(x)) for x in el if x == ""]
-#     return ','.join(el)
-#
-#
-# print(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5,
-#       7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
-
 def solution(args):
     sl, el = [], []
     [sl.append(f"{args[i]}.") if len(sl) == 0 or args[i] == (args[i-1]+1)
